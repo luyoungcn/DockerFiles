@@ -37,7 +37,7 @@ RUN apt-get install -y --fix-broken --fix-missing sudo ssh openssh-server  \
     python3 python3-pip python3-setuptools python python-setuptools \
     python-dev python-simplejson python3-networkx python-numpy \
     man-db manpages-dev manpages-posix-dev \
-    graphviz doxygen \
+    graphviz doxygen uml-utilities bridge-utils iputils-ping \
     tar p7zip-rar p7zip-full unace unrar zip unzip sharutils rar uudeview mpack arj cabextract \
     git vim vim-gui-common neovim minicom cscope ctags global silversearcher-ag neofetch rsync gnupg net-tools \
     tmux wget curl weechat \
