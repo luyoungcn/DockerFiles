@@ -5,18 +5,7 @@ ENV WORKDIR=01-coding
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# 替换为阿里云镜像，如不需要可以去掉本部分
-RUN printf '\n\
-deb http://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse \n\
-deb http://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse \n\
-deb http://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse \n\
-deb http://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse \n\
-deb http://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse \n\
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ focal main restricted universe multiverse \n\
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ focal-security main restricted universe multiverse \n\
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ focal-updates main restricted universe multiverse \n\
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse \n\
-deb-src http://mirrors.ustc.edu.cn/ubuntu/ focal-backports main restricted universe multiverse' > /etc/apt/sources.list
+ADD sources.list /etc/apt/
 
 RUN apt-get update \
     && apt-get autoremove -y \
@@ -25,8 +14,10 @@ RUN apt-get update \
 # Overwrite sh with bash
 RUN mv /bin/sh /bin/sh_tmp && ln -s /bin/bash /bin/sh
 
+RUN apt-get install -y vim git
+
 # 安装开发环境必要的包
-RUN apt-get install -y --fix-broken --fix-missing sudo ssh openssh-server  \
+RUN apt-get install -y  sudo ssh openssh-server  \
     autoconf automake pkg-config build-essential gcc g++ gdb clang clangd-* \
     gdbserver valgrind make cmake ninja-build gcc-arm-linux-gnueabi gcc-9-arm-linux-gnueabi \
     bison gperf flex bc mtd-utils zlib1g-dev \
