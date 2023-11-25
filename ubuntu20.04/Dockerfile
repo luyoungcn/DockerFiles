@@ -19,6 +19,7 @@ RUN apt-get install -y vim git
 # 安装开发环境必要的包
 RUN apt-get install -y  sudo ssh openssh-server  \
     autoconf automake pkg-config build-essential gcc g++ gdb clang clangd-* \
+    gcc-aarch64-linux-gnu libncurses5-dev \
     gdbserver valgrind make cmake ninja-build gcc-arm-linux-gnueabi gcc-9-arm-linux-gnueabi \
     bison gperf flex bc mtd-utils zlib1g-dev \
     lcov libboost-dev libssl-dev\
